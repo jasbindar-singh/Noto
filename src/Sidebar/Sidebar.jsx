@@ -1,12 +1,12 @@
 import React, {useContext} from 'react'
 import Button from '../Button/Button'
 import NoteList from '../NoteList/NoteList'
-import { NavContext } from '../Main/Main'
+import { DataContext } from '../Main/Main'
 
 function Sidebar() {
     console.log("Sidebar logged!")
 
-    const {isOpen} = useContext(NavContext);
+    const {isOpen} = useContext(DataContext);
 
     const navStyle = isOpen ? "" : "navMarginLeft"
 
@@ -18,4 +18,4 @@ function Sidebar() {
     )
 }
 
-export default Sidebar
+export default React.memo(Sidebar)

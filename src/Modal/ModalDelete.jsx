@@ -1,9 +1,16 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import { Icon } from '@iconify/react';
 import bxX from '@iconify/icons-bx/bx-x';
 import Loader from '../Loader/Loader';
+import { firestore } from "../configs/firebase";
+import { AuthContext } from '../App';
+import { DataContext } from '../Main/Main';
 
 function ModalDelete({isModalOpen, toggle}) {
+
+
+    const {currentUser} = useContext(AuthContext);
+    const {currentNote, deleteNote} = useContext(DataContext);
 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -12,11 +19,18 @@ function ModalDelete({isModalOpen, toggle}) {
     async function handleDelete(){
         setIsLoading(true)
         
-        await setTimeout(() => {
-            console.log("Ran!")
+        await firestore
+        .collection(`userData/${currentUser.uid}/notes`)
+        .doc(currentNote.id)
+        .delete()
+        .then(() => {
             setIsLoading(false)
             toggle()
-        },2000)
+            deleteNote(currentNote.id)
+        })
+        .catch(err => {
+            alert(err.message)
+        })
     }
 
     return (
@@ -33,13 +47,13 @@ function ModalDelete({isModalOpen, toggle}) {
                     readOnly
                 ></textarea>
                 <div className="flex">
-                    <button className="bg-cpurple-light py-2 mx-4 mb-4 flex-grow" onClick={handleDelete}>
+                    <button className="bg-cpurple-light py-2 mx-4 mb-4 flex-grow" onClick={toggle}>Cancel</button>
+                    <button className="bg-cpurple-light py-2 mr-4 mb-4 flex-grow" onClick={handleDelete}>
                         {
-                            isLoading ? <Loader size={25} className="inline mr-2"/> : null
+                            isLoading ? <Loader size={22} className="inline mr-2"/> : null
                         }
                         Delete
                     </button>
-                    <button className="bg-cpurple-light py-2 mr-4 mb-4 flex-grow" onClick={toggle}>Cancel</button>
                 </div>
             </div>
         </div>
