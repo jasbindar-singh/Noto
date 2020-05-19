@@ -21,7 +21,7 @@ module.exports = {
         dark: '#2C003E'
       },
       cteal: {
-        light: '',
+        light: '#9AFDFF',
         dark: '#00797C'
       },
       cgray: {
