@@ -1,9 +1,9 @@
 import React, {useContext} from 'react'
-import AppleLogin from './AppleLogin'
+// import AppleLogin from './AppleLogin'
 import GithubLogin from './GithubLogin'
 import GoogleLogin from './GoogleLogin'
 import FacebookLogin from './FacebookLogin'
-import TwitterLogin from './TwitterLogin'
+// import TwitterLogin from './TwitterLogin'
 import AnonymousLogin from './AnonymousLogin'
 import { AuthContext } from '../App'
 import { Redirect } from 'react-router-dom'
@@ -22,12 +22,10 @@ function Login() {
             <div className="bg-cgray-light px-16 py-8 login">
                 <p className="text-white text-4xl mb-2">Login</p>
                 <div className="h-1 bg-white"></div>
-                <div className="my-12 font-medium">                                                                                                          
-                    <AppleLogin/>
-                    <GithubLogin/>
+                <div className="my-12 font-medium">
                     <GoogleLogin/>
                     <FacebookLogin/>
-                    <TwitterLogin/>
+                    <GithubLogin/>
                     <AnonymousLogin/>                            
                 </div>
             </div>

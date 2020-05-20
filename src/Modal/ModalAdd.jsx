@@ -66,6 +66,7 @@ function ModalAdd({isOpen, toggle}) {
                 setIsLoading(false)
                 toggle()
                 addNote(note)
+                setNoteTitle("")
             })
             .catch(err => err.message)
         }
@@ -86,6 +87,7 @@ function ModalAdd({isOpen, toggle}) {
                     placeholder={isAnonymous ? "Login to add more notes." : "Enter your note title..."}
                     onChange={handleChange}
                     disabled={isAnonymous}
+                    value={noteTitle}
                 ></textarea>
                 {
                     error.hasError ? <p className="mx-4 text-sm tracking-wide text-red-600">{error.message}</p> : null

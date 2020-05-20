@@ -4,7 +4,7 @@ import bxlGoogle from '@iconify/icons-bx/bxl-google';
 import firebase, { auth } from '../configs/firebase'
 import Loader from '../Loader/Loader';
 
-function GoogleLogin(props) {
+function GoogleLogin() {
 
     const [isLoading, setIsLoading] = useState(false)
 
