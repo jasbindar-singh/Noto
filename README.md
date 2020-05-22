@@ -1,7 +1,7 @@
 # NOTO
 
 Check it out  
-[NOTO]()
+[NOTO](https://notojs.netlify.app/)
 
 To run it on your local machine follow these steps,
 
