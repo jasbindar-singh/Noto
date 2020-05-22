@@ -37,7 +37,7 @@ function Navbar() {
     }
 
     return (
-        <div className="px-8 lg:px-20 bg-cpurple-light text-white overflow-hidden nav" style={isOpen ? {height: "auto"} : {height: "53px"}}>
+        <div className="px-8 lg:px-20 bg-cpurple-light text-white overflow-hidden flex-shrink-0 nav" style={isOpen ? {height: "auto"} : {height: "53px"}}>
             <div className="flex justify-between items-center w-auto hide">
                 <a className="px-2 py-1 text-3xl cursor-pointer" href="/" style={{letterSpacing: "10px"}}>NOTO</a>
                 <Icon icon={isOpen ? bxX : bxMenu} style={{color: '#fff', fontSize: '30px'}} onClick={handleClick}/>
