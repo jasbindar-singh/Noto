@@ -8,7 +8,6 @@ import { DataContext } from '../Main/Main';
 
 function ModalDelete({isModalOpen, toggle}) {
 
-
     const {currentUser} = useContext(AuthContext);
     const {currentNote, deleteNote} = useContext(DataContext);
 

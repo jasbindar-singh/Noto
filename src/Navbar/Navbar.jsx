@@ -8,8 +8,6 @@ import { Link } from 'react-router-dom';
 
 function Navbar() {
 
-    console.log("Navbar logged!")
-
     const [isOpen, setIsOpen] = useState(false);
 
     const {currentUser} = useContext(AuthContext);

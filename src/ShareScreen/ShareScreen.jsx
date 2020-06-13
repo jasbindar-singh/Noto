@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { Icon } from '@iconify/react';
-import bxBookmarkPlus from '@iconify/icons-bx/bx-bookmark-plus';
 import { useParams } from 'react-router-dom';
 import { firestore } from '../configs/firebase';
 import MainLoader from '../Loader/MainLoader';
-
+import { Icon } from '@iconify/react';
+import bxBookmarkPlus from '@iconify/icons-bx/bx-bookmark-plus';
+import bxError from '@iconify/icons-bx/bx-error';
+import ModalSave from '../Modal/ModalSave';
 
 function ShareScreen() {
 
@@ -13,6 +14,14 @@ function ShareScreen() {
     const [note, setNote] = useState({});
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(true);
+    const [isSaveModalOpen, setIsSaveModalOpen] = useState(false);
+
+    function toggleSave(){
+        if(isSaveModalOpen)
+            setIsSaveModalOpen(false)
+        else
+            setIsSaveModalOpen(true)
+    }
 
     useEffect(() => {
         firestore
@@ -40,7 +49,9 @@ function ShareScreen() {
                         <div className="px-4 lg:px-12 bg-cteal-dark lg:py-2 text-white flex items-center justify-between flex-shrink-0" style={{height: "50px"}}>
                             {
                                 error ? (
-                                    <div className="w-full tracking-widest flex justify-center lg:justify-between lg:items-center flex-col lg:flex-row">Note not found!</div>
+                                    <div className="w-full tracking-widest flex items-center flex-row">
+                                        <Icon icon={bxError} style={{color: '#fff', fontSize: '25px', marginRight: '10px'}}/>Note not found!
+                                    </div>
                                 ) : (
                                     <>
                                         <div className="w-full tracking-widest flex justify-center lg:justify-between lg:items-center flex-col lg:flex-row">
@@ -48,8 +59,9 @@ function ShareScreen() {
                                             <span className="text-xs">By&nbsp;{note.author}</span>
                                         </div>
                                         <ul className={`flex justify-between text-base items-center`}>
-                                            <li className="px-4 cursor-pointer"><Icon icon={bxBookmarkPlus} style={{color: '#fff', fontSize: '25px'}}/></li>
+                                            <li className="px-4 cursor-pointer"><Icon icon={bxBookmarkPlus} style={{color: '#fff', fontSize: '25px'}} onClick={toggleSave}/></li>
                                         </ul>
+                                        <ModalSave isModalOpen={isSaveModalOpen} toggle={toggleSave} noteData={note}/>
                                     </>
                                 )
                             }

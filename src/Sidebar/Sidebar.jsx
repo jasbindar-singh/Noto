@@ -4,7 +4,6 @@ import NoteList from '../NoteList/NoteList'
 import { DataContext } from '../Main/Main'
 
 function Sidebar() {
-    console.log("Sidebar logged!")
 
     const {isOpen} = useContext(DataContext);
 

@@ -4,7 +4,6 @@ import EditorTextArea from './EditorTextArea'
 import EditorFooter from './EditorFooter'
 
 function Editor() {
-    console.log("Editor logged!")
 
     const [saveMessage, setSaveMessage] = useState("")
 

@@ -7,9 +7,7 @@ import { AuthContext } from '../App';
 export const DataContext = createContext();
 
 function Main() {
-
-    console.log("Main logged!")
-
+    
     const {currentUser} = useContext(AuthContext);
 
     const [isOpen, setIsOpen] = useState(false);

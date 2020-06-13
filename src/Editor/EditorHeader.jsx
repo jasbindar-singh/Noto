@@ -11,8 +11,6 @@ import { AuthContext } from '../App';
 
 function EditorHeader() {
 
-    console.log("Header logged!")
-
     const { isOpen, toggle, currentNote } = useContext(DataContext);
     const { currentUser } = useContext(AuthContext);
 

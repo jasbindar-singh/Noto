@@ -4,7 +4,6 @@ import { firestore } from '../configs/firebase'
 import { AuthContext } from '../App'
 
 function EditorTextArea({saveStatus}) {
-    console.log("TextArea logged!")
 
     const {currentNote, updateNote} = useContext(DataContext)
     const {currentUser} = useContext(AuthContext)

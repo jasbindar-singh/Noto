@@ -4,7 +4,6 @@ import { Icon } from '@iconify/react';
 import bxPlus from '@iconify/icons-bx/bx-plus';
 
 function Button() {
-    console.log("Button logged!")
 
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 

@@ -4,8 +4,6 @@ import { AuthContext } from '../App';
 
 function ProtectedRoute({component: RouteComponent , ...rest}) {
     
-    console.log("PR rendered!")
-
     const {currentUser} = useContext(AuthContext)
 
     return (
