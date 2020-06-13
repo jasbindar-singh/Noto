@@ -8,8 +8,7 @@ import AnonymousLogin from './AnonymousLogin'
 import { AuthContext } from '../App'
 import { Redirect } from 'react-router-dom'
 
-function Login() {
-    console.log("Login logged!")
+function Login(props) {
 
     const {currentUser} = useContext(AuthContext)
 

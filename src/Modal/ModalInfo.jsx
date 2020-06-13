@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { Icon } from '@iconify/react';
 import bxX from '@iconify/icons-bx/bx-x';
 
-function ModalInfo({isModalOpen, toggle}) {
+function ModalInfo({isModalOpen, toggle, userId, noteId}) {
 
     const inputRef = useRef(null);
     const [copySuccess, setCopySuccess] = useState("Copy")
@@ -28,7 +28,7 @@ function ModalInfo({isModalOpen, toggle}) {
                     ref={inputRef}
                     className="mx-4 my-4 flex-grow bg-cgray-light px-4 py-2"
                     style={{outline: "none", resize: "none"}}
-                    value={"This is the link"}
+                    value={`${window.location.origin}/user/${userId}/note/${noteId}`}
                     readOnly
                 ></textarea>
                 <button className="bg-cpurple-light py-2 mx-4 mb-4" onClick={copyInfo}>{copySuccess}</button>

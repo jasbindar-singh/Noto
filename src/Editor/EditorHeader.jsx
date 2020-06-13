@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { Icon } from '@iconify/react';
 import bxTrash from '@iconify/icons-bx/bx-trash';
-// import bxShareAlt from '@iconify/icons-bx/bx-share-alt';
+import bxShareAlt from '@iconify/icons-bx/bx-share-alt';
 import bxMenu from '@iconify/icons-bx/bx-menu';
 import bxX from '@iconify/icons-bx/bx-x';
 import { DataContext } from '../Main/Main';
@@ -55,15 +55,24 @@ function EditorHeader() {
                     {
                         !isAnonymous ? (
                             <>
-                                {/* <li className="px-4 cursor-pointer"><Icon icon={bxShareAlt} style={{color: '#fff', fontSize: '22px'}} onClick={toggleInfo}/></li> */}
+                                <li className="px-4 cursor-pointer"><Icon icon={bxShareAlt} style={{color: '#fff', fontSize: '22px'}} onClick={toggleInfo}/></li>
                                 <li className="px-4 cursor-pointer"><Icon icon={bxTrash} style={{color: '#fff', fontSize: '22px'}} onClick={toggleDelete}/></li>       
                             </>
                         ) : null
                     }
                 </ul>
             </div>
-            <ModalInfo isModalOpen={isInfoModalOpen} toggle={toggleInfo}/>
-            <ModalDelete isModalOpen={isDeleteModalOpen} toggle={toggleDelete}/>
+            {
+                !!currentNote ? (
+                    <>
+                        <ModalInfo isModalOpen={isInfoModalOpen} toggle={toggleInfo} userId={currentUser.uid} noteId={currentNote.id}/>
+                        <ModalDelete isModalOpen={isDeleteModalOpen} toggle={toggleDelete}/>
+                    </>
+                ) : (
+                    null
+                )
+            }
+            
         </>
     )
 }

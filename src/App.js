@@ -10,6 +10,7 @@ import MainLoader from './Loader/MainLoader';
 import About from './About/About';
 import Home from './Home/Home';
 import PageNotFound from './PageNotFound/PageNotFound';
+import ShareScreen from './ShareScreen/ShareScreen';
 
 
 export const AuthContext = createContext();
@@ -17,18 +18,17 @@ export const AuthContext = createContext();
 function App() {
 
   const [currentUser, setCurrentUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     let authUnsubscribe = null;
     setIsLoading(true)
     authUnsubscribe = auth.onAuthStateChanged(user => {
-      console.log(user)
       if(user)
         setCurrentUser(user);
       else
         setCurrentUser(null)
-        setIsLoading(false)
+      setIsLoading(false)
     })
 
     return () => authUnsubscribe()
@@ -46,9 +46,10 @@ function App() {
             </div>
           ) : (
             <Switch>
+              <ProtectedRoute exact path="/notes" component={Main}/>
+              <ProtectedRoute exact path="/user/:userId/note/:noteId" component={ShareScreen}/>
               <Route exact path="/" component={Home}/>
               <Route exact path="/login" component={Login}/>
-              <ProtectedRoute exact path="/notes" component={Main}/>
               <Route exact path="/about" component={About}/>
               <Route path='*' exact component={PageNotFound} />
             </Switch>
