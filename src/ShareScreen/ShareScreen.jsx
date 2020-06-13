@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { useParams } from 'react-router-dom';
 import { firestore } from '../configs/firebase';
 import MainLoader from '../Loader/MainLoader';
@@ -6,10 +6,12 @@ import { Icon } from '@iconify/react';
 import bxBookmarkPlus from '@iconify/icons-bx/bx-bookmark-plus';
 import bxError from '@iconify/icons-bx/bx-error';
 import ModalSave from '../Modal/ModalSave';
+import { AuthContext } from '../App';
 
 function ShareScreen() {
 
     let { userId, noteId } = useParams()
+    let { currentUser } = useContext(AuthContext)
 
     const [note, setNote] = useState({});
     const [error, setError] = useState(false);
@@ -37,6 +39,8 @@ function ShareScreen() {
         })
     }, [userId, noteId])
 
+    const isAnonymous = !!currentUser ? currentUser.isAnonymous : false;
+
     return (
         <>
             {
@@ -58,10 +62,18 @@ function ShareScreen() {
                                             <span className="text-sm lg:text-lg">{note.title}</span>
                                             <span className="text-xs">By&nbsp;{note.author}</span>
                                         </div>
-                                        <ul className={`flex justify-between text-base items-center`}>
-                                            <li className="px-4 cursor-pointer"><Icon icon={bxBookmarkPlus} style={{color: '#fff', fontSize: '25px'}} onClick={toggleSave}/></li>
-                                        </ul>
-                                        <ModalSave isModalOpen={isSaveModalOpen} toggle={toggleSave} noteData={note}/>
+                                        {
+                                            isAnonymous ? (
+                                                null
+                                            ) : (
+                                                <>
+                                                    <ul className={`flex justify-between text-base items-center`}>
+                                                        <li className="px-4 cursor-pointer"><Icon icon={bxBookmarkPlus} style={{color: '#fff', fontSize: '25px'}} onClick={toggleSave}/></li>
+                                                    </ul>
+                                                    <ModalSave isModalOpen={isSaveModalOpen} toggle={toggleSave} noteData={note}/>
+                                                </>
+                                            )
+                                        }
                                     </>
                                 )
                             }
