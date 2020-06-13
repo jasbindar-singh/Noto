@@ -5,14 +5,23 @@ import bxX from '@iconify/icons-bx/bx-x';
 function ModalInfo({isModalOpen, toggle, userId, noteId}) {
 
     const inputRef = useRef(null);
-    const [copySuccess, setCopySuccess] = useState("Copy")
+    const [copySuccess, setCopySuccess] = useState("Share")
 
     function copyInfo(e){
-        let input = inputRef.current;
-        input.select();
-        document.execCommand("copy");
-        e.target.focus()
-        setCopySuccess("Copied!")
+        if (navigator.share) {
+            navigator.share({
+                title: "Hey, here's my note.",
+                text: "Noto, create and share notes.",
+                url: `${window.location.origin}/user/${userId}/note/${noteId}`
+            })
+            .catch(console.error);
+        } else {
+            let input = inputRef.current;
+            input.select();
+            document.execCommand("copy");
+            e.target.focus()
+            setCopySuccess("Copied!")
+        }
     }
 
     let modalVisibility = isModalOpen ? "flex" : "hidden"
