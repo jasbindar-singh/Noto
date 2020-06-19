@@ -1,3 +1,17 @@
+html{
+    line-height: 1.5;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', 'sans-serif';
+}
+
+svg{
+    display: block;
+}
+
 .nav{
     display: flex;
     justify-content: space-between;
