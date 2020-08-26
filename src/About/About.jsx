@@ -25,7 +25,7 @@ function About() {
                    <ul className="mx-8 list-disc text-blue-400">
                         <li><a target="_blank" rel="noreferrer noopener" href="https://github.com/jasbindar-singh">Github</a></li>
                         <li><a target="_blank" rel="noreferrer noopener" href="https://www.linkedin.com/in/singhjs/">LinkedIn</a></li>
-                        <li><a target="_blank" rel="noreferrer noopener" href="https://twitter.com/JasbindarSing13">Twitter</a></li>
+                        <li><a target="_blank" rel="noreferrer noopener" href="https://twitter.com/jasbindar98">Twitter</a></li>
                     </ul>
                 </div>
             </div>
